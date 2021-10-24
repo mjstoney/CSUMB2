@@ -66,3 +66,39 @@ footer {
     color: orange;
 }
 
+table {
+    margin: 0px auto;
+    font-size: 1.3em;
+}
+
+td strong {
+    color: orange;
+}
+
+#table-header {
+    background-color: #351a00;
+}
+
+.table-row {
+    background-color: #753900;
+}
+
+ul {
+    width: 500px;
+    margin: 0, auto;
+    text-align: left;
+}
+
+.hobby {
+    color: yellow;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 4em;
+    margin-bottom: 0px;
+}
+
+#content {
+    margin: 0 auto;
+}
