@@ -21,6 +21,7 @@ in html
     <!-- This is the body -->
     <!-- This is where we place the content of our website -->
     <body>
+        <div class="container">
         <header>
             <h1>Matt Stoney</h1>
         </header>
@@ -36,45 +37,62 @@ in html
 
         <main>
             <figure>
-                <img src="img/mstoney_small.jpeg" alt="Picture of Matt Stoney" />
+                <img id="portrait" src="img/matt.png" alt="Picture of Matt Stoney" />
             </figure>
 
-            <div>
+            <div id="hello">
                 Hello!<br />
                 <p>Thanks you for visiting my professional Portfolio website.</p>
-                <p>I am a Software Engineer and have been recently hiredd at the ACME Corporation</p>
+                <p>I am a Software Engineering Student at the University of California at Monterey Bay. Go Otters! </p>
                 <p>Feel free to contact me!</p>
                 <br />
                 <br />
-                <em>"With ordinary talent andd extraordinary <strong>perseverance</strong>, all things are attainable"
+                <em>"With ordinary talent and extraordinary <strong>perseverance</strong>, all things are attainable"
                 </em><br />
                 - Thomas F. Buxton
-        
-            
             </div>
         </main>
+        <hr>
+        <div class="teamHeader">
+            <span class="headerSpan">The Connect4U Team</span>
+        </div>
+        <div class="teamImg">
+
+            
+            <div class="imgContainer">
+                <img src="img/cheuk.png" alt="Picture of Cheuk" />
+                <h2>Cheuk</h2>
+            </div>
+
+            <div class="imgContainer">
+                <img src="img/paola.png" alt="Picture of Paola" />
+                <h2>Paola</h2>
+            </div>
+
+            <div class="imgContainer">
+                <img src="img/wicaksa.png" alt="Picture of Wicaksa" />
+                <h2>Wicaksa</h2>
+            </div>
+        </div>
         
         
         
         <!-- This is the footer -->
         <!-- The footer goes inside the body but not always -->
         <footer class="footerWrapper">
-        <hr>
-        
+            <hr>
+            <div class="footerContainer">
+                <div class="footerImg">
                     <img class="logo" src="img/csumb.png" alt="CSUMB Logo">
                 </div>
-
-                
-                CST336 Internet Programming. 2021&copy; Stoney. 
-                <br />
+                <div class="disclaimer">CST336 Internet Programming. 2021&copy; Stoney. <br><br />
                 <strong>Disclaimer:</strong> The information in this webpage is fictitious. It is usedd for academic purposes only.
-                <br />
-  
-                   
-        </footer>
-        <!-- closing footer -->
-        
-    </body>
-    <!-- closing body -->
-
-</html>
+                </div><br />         
+            </div>
+            </footer>
+            <!-- closing footer -->
+        </div> 
+        </body>
+        <!-- closing body -->
+    
+    </html>

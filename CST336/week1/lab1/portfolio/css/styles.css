@@ -1,14 +1,25 @@
 body {
-    background-color: black;
-    color: gray;
+    background-color: #2b6777;
+    color: #2b6777;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.container {
+    background-color: #c8d8e4;
+    width: auto;
+    border-radius: 3%;
+}
 header, main, nav, footer {
     text-align: center;
+    
 }
 
 nav {
-    margin-top: 20px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 nav a {
@@ -16,37 +27,62 @@ nav a {
     padding-bottom: 4px;
     font-size: 1.8em;
     text-decoration: none;
-    color: white;
+    color: #2b6777;
 }
 
 nav a:hover {
-    border-bottom: 2px orange solid;
+    border-bottom: 4px #2b6777 solid;
     font-size: 2em;
     transition: 0.9;
 }
 
 .active {
-    color: orange;
-    border: 3px solid orange;
+    color: white;
+    border: 5px solid #2b6777;
+    font-weight: 900;
+    background-color: #2b6777;
 }
+
+hr {
+    width: 98%;
+    margin: 20px 0;
+}
+
 
 main {
     display: flex;
     justify-content: center;
-
+    align-items: center;
+ 
 }
 
-img {
+#portrait {
+    border: 3px solid #2b6777;
+    border-radius: 5%;
+    width: 80%;
+}
+
+#hello {
+    font-size: 2em;
+    width: 500px;
+    margin-right: 3em;
+    margin-top: 3em;
+}
+
+.portrait {
     width: 90%;
     height: 90%;
 }
-.foot {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
+
+.teamHeader {
+    font-size: 2em;
+    text-align: center;
 }
 
-
+.headerSpan {
+    font-size: 1.5em;
+    border-bottom: 3px solid #2b6777;
+}
 
 .logo {
     margin-left: auto;
@@ -57,40 +93,67 @@ img {
 }
 
 footer {
-    justify-content: left;
-    margin-left: 0;
-    margin-right: auto;
-    flex:auto;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 0.8em;
-    color: orange;
+    font-size: 0.9em;
+    color: #2b6777;
+
+}
+.footerContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
 
+.footerImg .logo {
+    border: 2px solid #2b6777;
+    
+}
+.disclaimer {
+    text-align: left;
+    margin-left: 50px;
+    width: 400px;
+}
 table {
     margin: 0px auto;
     font-size: 1.3em;
+    margin-bottom: 20px;
 }
 
 td strong {
-    color: orange;
+    color: #2b6777;
 }
 
-#table-header {
-    background-color: #351a00;
+.table-header {
+    background-color: #c8d8e4;
+    font-size: 1.5em;
 }
+.table-header td strong {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
 
 .table-row {
-    background-color: #753900;
+    background-color: #f2f2f2;
+}
+
+.table-row td {
+    padding: 10px;
 }
 
 ul {
-    width: 500px;
+    width: 700px;
     margin: 0, auto;
     text-align: left;
+    padding-right: 30px;
 }
 
 .hobby {
-    color: yellow;
+    color: #2b6777;
+    border-bottom: 1px solid #2b6777;
+    font-size: 2em;
+    font-weight: bolder;
 }
 
 h1 {
@@ -101,4 +164,64 @@ h1 {
 
 #content {
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #2b6777;
+    
+}
+
+.skills {
+    
+}
+
+.table-row{
+    color: #2b6777;
+
+}
+
+.hobbies li{
+    list-style: none;
+}
+
+ul span {
+    border-bottom: 1px solid yellow;
+}
+
+li p {
+    font-size: 1.25em;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
+}
+
+#contact {
+    display: flex;
+    justify-content: center;
+    height: 1100px;
+}
+
+.teamImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+
+}
+
+.imgContainer {
+    width: 250px;
+    margin: 2em;
+    border: 1px solid #2b6777;    
+    border-radius: 10px;
+    background-color: gray;
+}
+
+.imgContainer img {
+    width: 100%;
+    height: 330px;
+    border-radius: inherit;
+}
+
+.imgContainer h2 {
+    text-align: center;
 }

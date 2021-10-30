@@ -17,10 +17,12 @@ in html
         <link rel="stylesheet" href="css/styles.css" type="text/css">
     </head>
 <!-- closing head -->
+<!-- closing head -->
 
     <!-- This is the body -->
     <!-- This is where we place the content of our website -->
     <body>
+        <div class="container">
         <header>
             <h1>Matt Stoney</h1>
         </header>
@@ -35,25 +37,44 @@ in html
         <br />
 
         <div id="content">
-            <table>
+            <table class="skills">
                 <tr class="table-header">
                     <td><strong>Programming Language</strong></td>
                     <td><strong>Years Experience</strong></td>
                 </tr>
                 <tr class="table-row">
                     <td>C++</td>
-                    <td>2</td>
+                    <td>5</td>
                 </tr>
-                <tr class="table-row">
-                    <td>PHP</td>
-                    <td>1</td>
-                </tr>
+            </tr>
+            <tr class="table-row">
+                <td>C</td>
+                <td>5</td>
+            </tr>
+            <tr class="table-row">
+                <td>Javascript</td>
+                <td>2</td>
+            </tr>
+            <tr class="table-row">
+                <td></td>
+                <td>2</td>
+            </tr>
+            </tr>
+            <tr class="table-row">
+                <td>Java</td>
+                <td>1</td>
+            </tr>
+            <tr class="table-row">
+                <td>HTML/CSS</td>
+                <td>5</td>
+            </tr>
             </table>
-            <ul>
-                <li><span class="hobby">Video Games</span>: I own four consoless and like all kind of games but my favorite eis The Legend of Zelda</li>
-                <li><span class="hobby">Soccer</span>I am part of a team and we play every Saturday. I'm the goalie.</li>
-                <li><span class="hobby">Music</span>I love all kind of music but my favorite is R&B and Pop.</li>
-                <li><span class="hobby">Programming</span>I spend at least two hours every day using and learning programming languages.</li>
+            <ul class="hobbies">
+                <li><span class="hobby">Web Development</span>: <p>I have become increasingly fascinated with javascript development recently. After learning the capabilities of Node and all of its packages it feels like there are endless possibilities to what you can build with Javascript. I have been using the MERN stack to build single page web apps.</p></li>
+                <li><span class="hobby">Guitar</span>: <p>I have played guitar for nearly twenty years now. That makes me feel really old. I don't have as much time to commit to it as I once did, but I still play a tune here and there.</p></li>
+                <li><span class="hobby">Woodworking</span>: <p> Similar to programming, woodworking gives me a feeling of accomplishment knowing that I built something. I am not very good at it.</p></li>
+                <li><span class="hobby">Video Games</span>: <p> I enjoy playing games when I can. Mainly on the PC, but I do own a Nintendo Switch for couch gaming.</p></li>
+                <li><span class="hobby">Family</span>: <p>Not really a "hobby" but I have a one-year-old at home that gets the majority of my time. </li></p>
             </ul>
         </div>
         
@@ -62,20 +83,17 @@ in html
         <!-- The footer goes inside the body but not always -->
         <footer class="footerWrapper">
         <hr>
-        
-                    <img class="logo" src="img/csumb.png" alt="CSUMB Logo">
-                </div>
-
-                
-                CST336 Internet Programming. 2021&copy; Stoney. 
-                <br />
-                <strong>Disclaimer:</strong> The information in this webpage is fictitious. It is usedd for academic purposes only.
-                <br />
-  
-                   
+        <div class="footerContainer">
+            <div class="footerImg">
+                <img class="logo" src="img/csumb.png" alt="CSUMB Logo">
+            </div>
+            <div class="disclaimer">CST336 Internet Programming. 2021&copy; Stoney. <br><br />
+            <strong>Disclaimer:</strong> The information in this webpage is fictitious. It is usedd for academic purposes only.
+            </div><br />         
+        </div>
         </footer>
         <!-- closing footer -->
-        
+    </div> 
     </body>
     <!-- closing body -->
 
