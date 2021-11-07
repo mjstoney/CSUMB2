@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>US Geography Quiz</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Global variable to keep score
+        let score = 0;
+        let attempts = localStorage.getItem("total_attempts");
+
+        // Set button click listener
+        $("button").on("click", gradeQuiz);
+
+        displayQ4Choices();
+        displayQ6Choices();
+        displayQ10Choices();
+
+        function displayQ4Choices() {
+          let q4ChoicesArray = [
+            "Maine",
+            "Rhode Island",
+            "Maryland",
+            "Delaware",
+          ];
+          q4ChoicesArray = _.shuffle(q4ChoicesArray);
+
+          for (let i = 0; i < q4ChoicesArray.length; i++) {
+            $("#q4Choices").append(
+              `<input type="radio" name="q4" id=" ${q4ChoicesArray[i]}" value="${q4ChoicesArray[i]}">
+              <label for="${q4ChoicesArray[i]}">${q4ChoicesArray[i]}</label><br>`
+            );
+          }
+        }
+
+        function displayQ6Choices() {
+          let q6ChoicesArray = [3, 4, 5, 6, 7];
+          q6ChoicesArray = _.shuffle(q6ChoicesArray);
+
+          for (let i = 0; i < q6ChoicesArray.length; i++) {
+            $("#q6Choices").append(
+              `<input type="radio" name="q6" id=" ${q6ChoicesArray[i]}" value="${q6ChoicesArray[i]}">
+                <label for="${q6ChoicesArray[i]}">${q6ChoicesArray[i]}</label><br>`
+            );
+          }
+        }
+
+        function displayQ10Choices() {
+          let q10ChoicesArray = [
+            "Glacier National Park",
+            "Badlands National Park",
+            "Yellowstone National Park",
+            "Joshua Tree National Park",
+          ];
+          q10ChoicesArray = _.shuffle(q10ChoicesArray);
+
+          for (let i = 0; i < q10ChoicesArray.length; i++) {
+            $("#q10Choices").append(
+              `<input type="radio" name="q10" id=" ${q10ChoicesArray[i]}" value="${q10ChoicesArray[i]}">
+                  <label for="${q10ChoicesArray[i]}">${q10ChoicesArray[i]}</label><br>`
+            );
+          }
+        }
+
+        // Function checks if the user has answered the Q or not
+        function isFormValid() {
+          let isValid = true;
+          if ($("#q1").val() == "") {
+            isValid = false;
+            $("#validationFdbk").html("Q1 not answered!");
+          }
+
+          return isValid;
+        }
+
+        // Function that alters the page to show if the user was correct per question
+        function rightAnswer(index) {
+          $(`#q${index}Feedback`).html("Correct!");
+          $(`#q${index}Feedback`).attr("class", "bg-success text-white");
+          $(`#markImg${index}`).html(
+            '<img src="img/checkmark.png" alt="check mark">'
+          );
+          score += 10;
+        }
+
+        function wrongAnswer(index) {
+          $(`#q${index}Feedback`).html("Incorrect!");
+          $(`#q${index}Feedback`).attr("class", "bg-warning text-white");
+          $(`#markImg${index}`).html('<img src="img/xmark.png" alt="x-mark">');
+        }
+
+        function gradeQuiz() {
+          $("#validationFdbk").html("");
+          if (!isFormValid()) {
+            return;
+          }
+          // DECLARE VARIABLES
+          score = 0;
+          let q1Response = $("#q1").val().toLowerCase();
+          let q2Response = $("#q2").val();
+          let q4Response = $("input[name=q4]:checked").val();
+          let q5Response = $("#q5").val().toLowerCase();
+          let q6Response = $("input[name=q6]:checked").val();
+          let q7Response = $("#q7").val();
+          let q9Response = $("#q9").val();
+          let q10Response = $("input[name=q10]:checked").val();
+
+          // Grading Q1
+          if (q1Response == "sacramento") {
+            rightAnswer(1);
+          } else {
+            wrongAnswer(1);
+          }
+
+          // Grading Q2
+          if (q2Response == "mo") {
+            rightAnswer(2);
+          } else {
+            wrongAnswer(2);
+          }
+
+          // Grading Q3
+          if (
+            $("#Jefferson").is(":checked") &&
+            $("#Roosevelt").is(":checked") &&
+            !$("#Jackson").is(":checked") &&
+            !$("#Franklin").is(":checked")
+          ) {
+            rightAnswer(3);
+          } else {
+            wrongAnswer(3);
+          }
+
+          // Grading Q4
+          if (q4Response == "Rhode Island") {
+            rightAnswer(4);
+          } else {
+            wrongAnswer(4);
+          }
+
+          // Grading Q5
+          if (q5Response == "lake superior") {
+            rightAnswer(5);
+          } else {
+            wrongAnswer(5);
+          }
+
+          // Grading Q6
+          if (q6Response == "4") {
+            rightAnswer(6);
+          } else {
+            wrongAnswer(6);
+          }
+
+          // GradingQ7
+          if (q7Response == "mckinley") {
+            rightAnswer(7);
+          } else {
+            wrongAnswer(7);
+          }
+
+          // GradingQ8
+          if (
+            $("#il").is(":checked") &&
+            $("#ms").is(":checked") &&
+            !$("#ks").is(":checked") &&
+            $("#sc").is(":checked") &&
+            !$("#az").is(":checked")
+          ) {
+            rightAnswer(8);
+          } else {
+            wrongAnswer(8);
+          }
+
+          // Grading Q9
+          if (q9Response == "moj") {
+            rightAnswer(9);
+          } else {
+            wrongAnswer(9);
+          }
+
+          // Grading Q10
+          if (q10Response == "Yellowstone National Park") {
+            rightAnswer(10);
+          } else {
+            wrongAnswer(10);
+          }
+
+          // Calculate score and output
+          $("#totalScore").html(`Total Score: ${score}`);
+          $("#totalAttempts").html(`Total attempts: ${++attempts}`);
+          localStorage.setItem("total_attempts", attempts);
+
+          if (score < 80) {
+            $("#totalScore").attr("class", "bg-danger text-white");
+            $("#totalScore").append("<h3>Try harder next time!</h3>");
+          } else {
+            $("#totalScore").attr("class", "bg-success text-white");
+            $("#totalScore").append(
+              "<h3>Congratulations on your excellent score!</h3>"
+            );
+          }
+        }
+      });
+    </script>
+  </head>
+  <body class="text-center">
+    <h1 class="p-5 bg-info">US Geography Quiz</h1>
+
+    <!-- Question 1 -->
+    <h3><span id="markImg1"></span>Q1. What is the capital of California?</h3>
+    <input type="text" id="q1" />
+    <br /><br />
+    <div id="q1Feedback"></div>
+
+    <!-- Question 2 -->
+    <h3><span id="markImg2"></span>Q2. What is the longest river?</h3>
+
+    <select id="q2">
+      <option value="">Select One</option>
+      <option value="ms">Mississippi</option>
+      <option value="mo">Missouri</option>
+      <option value="co">Colorado</option>
+      <option value="de">Delaware</option>
+    </select>
+    <br /><br />
+    <div id="q2Feedback"></div>
+    <br /><br />
+
+    <!-- Question 3 -->
+    <h3>
+      <span id="markImg3"></span>Q3. What presidents are carved into Mt.
+      Rushmore?
+    </h3>
+    <input type="checkbox" name="Jackson" id="Jackson" />
+    <label for="Jackson">A. Jackson</label>
+    <input type="checkbox" name="Franklin" id="Franklin" />
+    <label for="Franklin">B. Franklin</label>
+    <input type="checkbox" name="Jefferson" id="Jefferson" />
+    <label for="Jefferson">T. Jefferson</label>
+    <input type="checkbox" name="Roosevelt" id="Roosevelt" />
+    <label for="Roosevelt">T. Roosevelt</label>
+
+    <br /><br />
+    <div id="q3Feedback"></div>
+    <br /><br />
+
+    <!-- Question 4 -->
+    <h3><span id="markImg4"></span>Q4. What is the smalles US State?</h3>
+
+    <div id="q4Choices"></div>
+
+    <br /><br />
+    <div id="q4Feedback"></div>
+    <br /><br />
+
+    <!-- Question 5 -->
+    <h3><span id="markImg5"></span>Q5. What is the largest lake in the US?</h3>
+    <input type="text" id="q5" />
+    <br /><br />
+    <div id="q5Feedback"></div>
+
+    <!-- Question 6 -->
+    <h3>
+      <span id="markImg6"></span>Q6. How many US states share a border with
+      Mexico?
+    </h3>
+
+    <div id="q6Choices"></div>
+
+    <br /><br />
+    <div id="q6Feedback"></div>
+    <br /><br />
+
+    <!-- Question 7 -->
+    <h3>
+      <span id="markImg7"></span>Q7. Which is the tallest mountain in the US?
+    </h3>
+
+    <select id="q7">
+      <option value="">Select One</option>
+      <option value="mckinley">Mt. McKinley</option>
+      <option value="everest">Mt. Everest</option>
+      <option value="rushmore">Mt. Rushmore</option>
+      <option value="livermore">Mt. Livermore</option>
+    </select>
+    <br /><br />
+    <div id="q7Feedback"></div>
+    <br /><br />
+
+    <!-- Question 8 -->
+    <h3>
+      <span id="markImg8"></span>Q8. Which states are located east of the
+      Mississippi river?
+    </h3>
+    <input type="checkbox" name="Illinois" id="il" />
+    <label for="Illinois">Illinois</label>
+    <input type="checkbox" name="Mississippi" id="ms" />
+    <label for="Mississippi">Mississippi</label>
+    <input type="checkbox" name="Kansas" id="ks" />
+    <label for="Kansas">Kansas</label>
+    <input type="checkbox" name="South Carolina" id="sc" />
+    <label for="South Carolina">South Carolina</label>
+    <input type="checkbox" name="Arizona" id="az" />
+    <label for="Arizona">Arizona</label>
+
+    <br /><br />
+    <div id="q8Feedback"></div>
+    <br /><br />
+
+    <!-- Question 9 -->
+    <h3><span id="markImg9"></span>Q9. What desert is Las Vegas located in?</h3>
+
+    <select id="q9">
+      <option value="">Select One</option>
+      <option value="moj">Mojave</option>
+      <option value="gob">Gobi</option>
+      <option value="sah">Sahara</option>
+      <option value="ata">Atacama</option>
+    </select>
+    <br /><br />
+    <div id="q9Feedback"></div>
+    <br /><br />
+
+    <!-- Question 10 -->
+    <h3>
+      <span id="markImg10"></span>Q10. Which national park spreads across three
+      states: Idaho, Wyoming, and Montana.?
+    </h3>
+
+    <div id="q10Choices"></div>
+
+    <br /><br />
+    <div id="q10Feedback"></div>
+    <br /><br />
+
+    <!-- SECTION FOR DISPLAYING FEEDBACK AND SCORES-->
+    <h3 id="validationFdbk" class="bg-danger text-white"></h3>
+    <button class="btn btn-outline-primary">Submit Quiz</button>
+
+    <br />
+    <h2 id="totalScore" class="text-info"></h2>
+    <h3 id="totalAttempts"></h3>
+  </body>
+</html>
