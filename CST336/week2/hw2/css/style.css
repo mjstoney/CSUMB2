@@ -7,7 +7,6 @@ body {
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.2);
-  padding-top: 30px;
 }
 #container {
   background: rgb(80, 80, 255);
@@ -17,21 +16,28 @@ body {
     rgba(172, 216, 230, 1) 78%
   );
   width: 60%;
-  height: 100vh;
   display: flex;
   justify-content: center;
-  padding-top: 100px;
-  overflow: visible;
+  padding-top: 40px;
+  overflow: scroll;
 }
 
 .listContainer {
   background-color: lightgray;
-  padding: 20px 0 20px 0;
+  padding: 20px 0 85px 0;
   border: 2px solid rgba(0, 0, 0, 0.7);
   border-radius: 10px;
+  position: relative;
 }
 
-.listHeader {
+#headerSpan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerImg {
+  transform: scale(50%);
 }
 
 .title {
@@ -47,9 +53,14 @@ body {
   height: 3em;
   width: 400px;
   position: relative;
+  padding-left: 1em;
+  border-style: none;
 }
 
-#inputBtn,
+#itemInput:focus {
+  border: none;
+}
+
 #plusIcon {
   position: absolute;
   right: 17px;
@@ -59,39 +70,43 @@ body {
   cursor: pointer;
 }
 
-#plusIcon {
-}
-
 #list {
   line-height: 2em;
-  font-size: 1.5em;
+  font-size: 1.25em;
   list-style: none;
 }
 
 .listItem {
   position: relative;
   margin-left: 1em;
+  border-bottom: 2px solid black;
+  width: 90%;
 }
 
-#checkItem {
-  position: absolute;
-  cursor: pointer;
-  right: 80px;
-  top: 15px;
+#listSpan {
+  left: 10px;
+  max-width: 100%;
+  left: 0;
 }
 
-#deleteItem {
+#checkIcon {
   position: absolute;
   cursor: pointer;
-  right: 40px;
-  top: 15px;
+  right: 60px;
+  top: 10px;
+}
+
+#deleteIcon {
+  position: absolute;
+  cursor: pointer;
+  right: 20px;
+  top: 10px;
 }
 
 .fas {
   background-color: lightgray;
   border: none;
   outline: none;
-  font-size: 1.5em;
   position: inherit;
 }
 
@@ -103,7 +118,20 @@ body {
   color: red;
 }
 
-.separator {
-  width: auto;
-  margin: 5px 20px 5px 20px;
+button {
+  position: absolute;
+  font-size: 1em;
+  font-weight: bold;
+  color: darkslategray;
+  padding: 10px;
+}
+
+#clearList {
+  bottom: 15px;
+  right: 15px;
+}
+
+#renumberList {
+  bottom: 15px;
+  left: 15px;
 }

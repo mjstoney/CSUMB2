@@ -19,15 +19,22 @@
     <div id="container">
       <div class="listContainer">
         <div class="listHeader">
-          <h1 class="title">Todo List</h1>
+          <span id="headerSpan">
+            <img id="headerImg" />
+            <h1 class="title">Todo List</h1>
+          </span>
           <span id="inputSpan"
-            ><input type="text" name="" id="itemInput" /><button id="inputBtn"><i
+            ><input type="text" name="input" id="itemInput" /><i
               id="plusIcon"
               class="fas fa-plus"
             ></i
-          ></button></span>
+          ></span>
         </div>
-        <ul id="list"></ol>
+        <ul id="list"></ul>
+        <span>
+          <button id="clearList">Clear</button>
+          <button id="renumberList">Renumber List</button>
+        </span>
       </div>
     </div>
   </body>
