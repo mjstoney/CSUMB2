@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-top: 30px;
+}
+#container {
+  background: rgb(80, 80, 255);
+  background: linear-gradient(
+    148deg,
+    rgba(80, 80, 255, 1) 0%,
+    rgba(172, 216, 230, 1) 78%
+  );
+  width: 60%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  overflow: visible;
+}
+
+.listContainer {
+  background-color: lightgray;
+  padding: 20px 0 20px 0;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.listHeader {
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#inputSpan {
+  position: relative;
+}
+
+#itemInput {
+  height: 3em;
+  width: 400px;
+  position: relative;
+}
+
+#inputBtn,
+#plusIcon {
+  position: absolute;
+  right: 17px;
+  bottom: 0;
+  font-size: 20px;
+  background-color: white;
+  cursor: pointer;
+}
+
+#plusIcon {
+}
+
+#list {
+  line-height: 2em;
+  font-size: 1.5em;
+  list-style: none;
+}
+
+.listItem {
+  position: relative;
+  margin-left: 1em;
+}
+
+#checkItem {
+  position: absolute;
+  cursor: pointer;
+  right: 80px;
+  top: 15px;
+}
+
+#deleteItem {
+  position: absolute;
+  cursor: pointer;
+  right: 40px;
+  top: 15px;
+}
+
+.fas {
+  background-color: lightgray;
+  border: none;
+  outline: none;
+  font-size: 1.5em;
+  position: inherit;
+}
+
+.fa-check {
+  color: green;
+}
+
+.fa-ban {
+  color: red;
+}
+
+.separator {
+  width: auto;
+  margin: 5px 20px 5px 20px;
+}
