@@ -31,6 +31,7 @@
     <select name="county" id="county"></select
     ><br /><br />
     Desired Username: <input type="text" name="username" id="username" /><br />
+    <span id="usernameError"></span><br />
 
     Password: <input type="password" name="password" id="password" /><br />
     Password Again: <input type="password" id="password" /><br />
@@ -59,6 +60,21 @@
         $("#county").html("<option>Select One</option>");
         for (let i = 0; i < data.length; i++) {
           $("#county").append(`<option>${data[i].county}</option>`);
+        }
+      });
+
+      $("#username").on("change", async () => {
+        let username = $("#username").val();
+        let url = `https://cst336.herokuapp.com/projects/api/usernamesAPI.php?username=${username}`;
+        let response = await fetch(url);
+        let data = await response.json();
+        //console.log(data);
+        if (data.available) {
+          $("#usernameError").html("Username available!");
+          $("#usernameError").css("color", "green");
+        } else {
+          $("#usernameError").html("Username not available!");
+          $("#usernameError").css("color", "red");
         }
       });
     </script>
