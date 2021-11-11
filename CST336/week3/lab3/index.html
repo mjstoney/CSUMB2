@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <h1>Sign Up</h1>
@@ -15,8 +16,8 @@
 
     Zip Code: <input type="text" name="zip" id="zip" /><br />
     City: <span id="city"></span> <br />
-    Latitude: <br />
-    Longitude: <br /><br />
+    Latitude: <span id="latitude"></span><br />
+    Longitude: <span id="longitude"></span><br /><br />
 
     State:
     <select name="state" id="state">
@@ -27,7 +28,7 @@
     ><br />
 
     Select a County:
-    <select name="county" id="count"></select
+    <select name="county" id="county"></select
     ><br /><br />
     Desired Username: <input type="text" name="username" id="username" /><br />
 
@@ -35,5 +36,31 @@
     Password Again: <input type="password" id="password" /><br />
 
     <input type="submit" value="Sign Up!" />
+    <script>
+      $("#zip").on("change", async () => {
+        //alert($("#zip").val());
+        let zipCode = $("#zip").val();
+        let url = `https://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php?zip=${zipCode}`;
+        let response = await fetch(url);
+        let data = await response.json();
+        //console.log(data);
+        $("#city").html(data.city);
+        $("#latitude").html(data.latitude);
+        $("#longitude").html(data.longitude);
+      });
+
+      $("#state").on("change", async () => {
+        //alert($("#state").val());
+        let state = $("#state").val();
+        let url = `https://itcdland.csumb.edu/~milara/ajax/countyList.php?state=${state}`;
+        let response = await fetch(url);
+        let data = await response.json();
+        //console.log(data);
+        $("#county").html("<option>Select One</option>");
+        for (let i = 0; i < data.length; i++) {
+          $("#county").append(`<option>${data[i].county}</option>`);
+        }
+      });
+    </script>
   </body>
 </html>
