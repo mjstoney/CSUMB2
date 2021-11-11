@@ -9,35 +9,43 @@
   </head>
   <body>
     <h1>Sign Up</h1>
-    First Name: <input type="text" name="fName" /><br />
-    Last Name: <input type="text" name="lName" /><br />
-    Gender: <input type="radio" name="gender" value="m" />Male
-    <input type="radio" name="gender" value="f" />Female<br /><br />
+    <form id="signupForm" action="welcome.html">
+      First Name: <input type="text" name="fName" /><br />
+      Last Name: <input type="text" name="lName" /><br />
+      Gender: <input type="radio" name="gender" value="m" />Male
+      <input type="radio" name="gender" value="f" />Female<br /><br />
 
-    Zip Code: <input type="text" name="zip" id="zip" /><br />
-    City: <span id="city"></span> <br />
-    Latitude: <span id="latitude"></span><br />
-    Longitude: <span id="longitude"></span><br /><br />
+      Zip Code: <input type="text" name="zip" id="zip" /><br />
+      City: <span id="city"></span> <br />
+      Latitude: <span id="latitude"></span><br />
+      Longitude: <span id="longitude"></span><br /><br />
 
-    State:
-    <select name="state" id="state">
-      <option>Select One</option>
-      <option value="ca">California</option>
-      <option value="ny">New York</option>
-      <option value="tx">Texas</option></select
-    ><br />
+      State:
+      <select name="state" id="state">
+        <option>Select One</option>
+        <option value="ca">California</option>
+        <option value="ny">New York</option>
+        <option value="tx">Texas</option></select
+      ><br />
 
-    Select a County:
-    <select name="county" id="county"></select
-    ><br /><br />
-    Desired Username: <input type="text" name="username" id="username" /><br />
-    <span id="usernameError"></span><br />
+      Select a County:
+      <select name="county" id="county"></select
+      ><br /><br />
+      Desired Username:
+      <input type="text" name="username" id="username" /><br />
+      <span id="usernameError"></span><br />
 
-    Password: <input type="password" name="password" id="password" /><br />
-    Password Again: <input type="password" id="password" /><br />
+      Password: <input type="password" name="password" id="password" />
+      <span id="passwordError"></span><br />
+      Password Again: <input type="password" id="passwordAgain" />
+      <span id="passwordAgainError"></span><br /><br />
 
-    <input type="submit" value="Sign Up!" />
+      <input type="submit" value="Sign Up!" />
+    </form>
+
     <script>
+      var usernameAvailable = false;
+
       $("#zip").on("change", async () => {
         //alert($("#zip").val());
         let zipCode = $("#zip").val();
@@ -72,11 +80,45 @@
         if (data.available) {
           $("#usernameError").html("Username available!");
           $("#usernameError").css("color", "green");
+          usernameAvailable = true;
         } else {
           $("#usernameError").html("Username not available!");
           $("#usernameError").css("color", "red");
+          usernameAvailable = false;
         }
       });
+
+      $("#signupForm").on("submit", (e) => {
+        if (!isFormValid()) {
+          e.preventDefault();
+        }
+      });
+
+      function isFormValid() {
+        isValid = true;
+        if (!usernameAvailable) {
+          isValid = false;
+        }
+
+        if ($("#username").val().length == 0) {
+          isValid = false;
+          $("#username").html("Username is required.");
+        }
+
+        if ($("#password").val() != $("#passwordAgain").val()) {
+          $("#passwordAgainError").html("Passwords do not match.");
+          isValid = false;
+        }
+
+        if ($("#password").val().length < 6) {
+          $("#passwordError").html(
+            "Password must be at least 6 characters in length."
+          );
+          isValid = false;
+        }
+
+        return isValid;
+      }
     </script>
   </body>
 </html>
