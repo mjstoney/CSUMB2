@@ -1,4 +1,6 @@
-/*https://api.themoviedb.org/3/movie/550?api_key=b3ba8a8cfb333202db1a9d6497da1f47
+/*
+********* API NOTES **********
+https://api.themoviedb.org/3/movie/550?api_key=b3ba8a8cfb333202db1a9d6497da1f47
 
 b3ba8a8cfb333202db1a9d6497da1f47
 
@@ -22,7 +24,7 @@ https://api.themoviedb.org/3/discover/movie?api_key=b3ba8a8cfb333202db1a9d6497da
 5. get poster: https://image.tmdb.org/t/p/w500/6AdXwFTRTAzggD2QUTt5B7JFGKL.jpg
 --> poster path from movie details api endpoint
 
-
+******* SAMPLE MOVIE JSON data *********
 
 const eternalMovie = {
   adult: false,
@@ -80,6 +82,7 @@ $(document).ready(() => {
   const topMoviesLink = $("#topMoviesLink");
   const homeLink = $("#homeLink");
   const searchForm = $("#searchForm");
+  let categoryList = $("#categoryList");
   let currentMovies = [];
 
   /***************************************************************
@@ -117,7 +120,7 @@ $(document).ready(() => {
     let data = await results.json();
     data.genres.forEach((genre) => {
       dropdownList.append(
-        `<li><a href="#" id="${genre.id}" class="dropdown-item">${genre.name}</a></li>`
+        `<li id="categoryList"><a href="#" id="${genre.id}" class="category dropdown-item">${genre.name}</a></li>`
       );
     });
   }
@@ -156,6 +159,13 @@ $(document).ready(() => {
     return data.results;
   }
 
+  async function fetchGenreMovies(genreID) {
+    let genreURI = `https://api.themoviedb.org/3/discover/movie?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreID}&with_watch_monetization_types=flatrate`;
+    let response = await fetch(genreURI);
+    let data = await response.json();
+    console.log(data.results);
+    getMovies(data.results);
+  }
   /***************************************************************
    *
    *        EVENT LISTENERS
@@ -183,5 +193,9 @@ $(document).ready(() => {
     getMovies(currentMovies);
   });
 
+  // adds click listener to fetch genre movie data when clicking the categories dropdown links
+  dropdownList.on("click", ".category", (e) => {
+    fetchGenreMovies(e.currentTarget.id);
+  });
   populateCategoriesMenu();
 });
