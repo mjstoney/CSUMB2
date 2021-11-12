@@ -79,16 +79,19 @@ $(document).ready(() => {
   const searchBtn = $("#searchBtn");
   const topMoviesLink = $("#topMoviesLink");
   const homeLink = $("#homeLink");
+  const searchForm = $("#searchForm");
   let currentMovies = [];
-  $("#searchForm").submit((event) => {
-    event.preventDefault();
-  });
 
   /***************************************************************
    *
    *        FUNCTIONS
    *
    ***************************************************************/
+
+  /*
+   *   This function takes an array of movies (fetched from the movie API) and
+   *   displays them as flip-cards in the .main div
+   */
   async function getMovies(arr) {
     let posterAPI = "https://image.tmdb.org/t/p/w500/";
     if (arr) {
@@ -102,6 +105,11 @@ $(document).ready(() => {
     }
   }
 
+  /*
+   *   This function fetches the list of genres from the API and creates the links in the
+   *   "categories" dropdown in the navbar. It assigns the API's genre id to the <li> id attribute
+   *   so it can be easily used to fetch the movies for that genre by that id.
+   */
   async function populateCategoriesMenu() {
     const genreURI =
       "https://api.themoviedb.org/3/genre/movie/list?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US";
@@ -114,6 +122,12 @@ $(document).ready(() => {
     });
   }
 
+  /*
+   *   This function gets the text in the search field, validates the input
+   *   and executes the API fetch for the search. It then displays the results
+   *   in the .main div
+   *
+   */
   async function executeSearch(searchText) {
     if (searchText.length == 0) {
       alert("Please enter a movie to search for...");
@@ -128,37 +142,46 @@ $(document).ready(() => {
     searchField.val("");
     console.log(currentMovies);
   }
+  /*
+   *   This function fetches an array the top trending movies from the API
+   *   and passes it to the getMovies() function to be displayed.
+   *
+   */
+  async function fetchTopMovies() {
+    const trendingURI =
+      "https://api.themoviedb.org/3/trending/movie/week?api_key=b3ba8a8cfb333202db1a9d6497da1f47";
+
+    const trending = await fetch(trendingURI);
+    const data = await trending.json();
+    return data.results;
+  }
 
   /***************************************************************
    *
    *        EVENT LISTENERS
    *
    ***************************************************************/
+  // loads home page from navbar link
   homeLink.click(() => {
     $(".main").load("home.html");
   });
 
+  // allows search field to submit on hitting enter without reloading the page
+  searchForm.submit(() => {
+    executeSearch(searchField.val());
+    return false;
+  });
+
+  // submit search on button click
   searchBtn.on("click", (e) => {
-    e.preventDefault();
     executeSearch(searchField.val());
   });
 
-  searchField.on("keypress", (e) => {
-    if (e.which === 14) {
-      executeSearch(searchField.val());
-    }
-  });
-
+  // loads top movies data on clicking the navbar link
   topMoviesLink.click(async () => {
-    const trendingURI =
-      "https://api.themoviedb.org/3/trending/movie/week?api_key=b3ba8a8cfb333202db1a9d6497da1f47";
-
-    const trending = await fetch(trendingURI);
-    const data = await trending.json();
-    getMovies(data.results);
+    let currentMovies = await fetchTopMovies();
+    getMovies(currentMovies);
   });
 
-  //   getTrendingMovies();
   populateCategoriesMenu();
 });
-//movies?search=hellboy
