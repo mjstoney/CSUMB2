@@ -79,7 +79,7 @@ $(document).ready(() => {
   const searchBtn = $("#searchBtn");
   const topMoviesLink = $("#topMoviesLink");
   const homeLink = $("#homeLink");
-
+  let currentMovies = [];
   $("#searchForm").submit((event) => {
     event.preventDefault();
   });
@@ -122,9 +122,11 @@ $(document).ready(() => {
       let searchURI = `https://api.themoviedb.org/3/search/movie?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US&query=${searchText}&page=1&include_adult=false`;
       let result = await fetch(searchURI);
       let data = await result.json();
-      getMovies(data.results);
+      currentMovies = data.results;
+      getMovies(currentMovies);
     }
     searchField.val("");
+    console.log(currentMovies);
   }
 
   /***************************************************************
