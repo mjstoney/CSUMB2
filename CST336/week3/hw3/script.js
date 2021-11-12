@@ -22,7 +22,7 @@ https://api.themoviedb.org/3/discover/movie?api_key=b3ba8a8cfb333202db1a9d6497da
 5. get poster: https://image.tmdb.org/t/p/w500/6AdXwFTRTAzggD2QUTt5B7JFGKL.jpg
 --> poster path from movie details api endpoint
 
-*/
+
 
 const eternalMovie = {
   adult: false,
@@ -71,33 +71,92 @@ const eternalMovie = {
   vote_average: 7.1,
   vote_count: 718,
 };
+*/
 
-$(document).ready(() => {});
+$(document).ready(() => {
+  const dropdownList = $("#dropdownList");
+  const searchField = $("#searchField");
+  const searchBtn = $("#searchBtn");
+  const topMoviesLink = $("#topMoviesLink");
+  const homeLink = $("#homeLink");
 
-async function getTrendingMovies() {
-  const trendingURI =
-    "https://api.themoviedb.org/3/trending/movie/week?api_key=b3ba8a8cfb333202db1a9d6497da1f47";
-  let posterAPI = "https://image.tmdb.org/t/p/w500/";
-  const trending = await fetch(trendingURI);
-  const data = await trending.json();
-  console.log(data.results);
-
-  data.results.forEach((movie) => {
-    let poster = posterAPI + movie.poster_path;
-    $(".trending").append(
-      `<div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="${poster}" alt="${movie.title}" /></div><div class="flip-card-back overflow-auto"><h1>${movie.title}</h1><p>${movie.vote_average} / 10</p><p>${movie.overview}</p></div></div></div>`
-    );
+  $("#searchForm").submit((event) => {
+    event.preventDefault();
   });
-}
 
-function populateCategoriesMenu() {
-  let genres = async () => {
+  /***************************************************************
+   *
+   *        FUNCTIONS
+   *
+   ***************************************************************/
+  async function getMovies(arr) {
+    let posterAPI = "https://image.tmdb.org/t/p/w500/";
+    if (arr) {
+      $(".main").empty();
+      arr.forEach((movie) => {
+        let poster = posterAPI + movie.poster_path;
+        $(".main").append(
+          `<div class="flip-card rounded-3 shadow-lg"><div class="flip-card-inner rounded"><div class="flip-card-front rounded"><img src="${poster}" class="rounded" alt="${movie.title}" /></div><div class="flip-card-back rounded overflow-auto"><h1>${movie.title}</h1><p>${movie.vote_average} / 10</p><p>${movie.overview}</p></div></div></div>`
+        );
+      });
+    }
+  }
+
+  async function populateCategoriesMenu() {
     const genreURI =
       "https://api.themoviedb.org/3/genre/movie/list?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US";
     let results = await fetch(genreURI);
-    let data = results.json();
-    console.log(data);
-  };
-}
-getTrendingMovies();
-populateCategoriesMenu();
+    let data = await results.json();
+    data.genres.forEach((genre) => {
+      dropdownList.append(
+        `<li><a href="#" id="${genre.id}" class="dropdown-item">${genre.name}</a></li>`
+      );
+    });
+  }
+
+  async function executeSearch(searchText) {
+    if (searchText.length == 0) {
+      alert("Please enter a movie to search for...");
+    }
+    if (searchText != "") {
+      let searchURI = `https://api.themoviedb.org/3/search/movie?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US&query=${searchText}&page=1&include_adult=false`;
+      let result = await fetch(searchURI);
+      let data = await result.json();
+      getMovies(data.results);
+    }
+    searchField.val("");
+  }
+
+  /***************************************************************
+   *
+   *        EVENT LISTENERS
+   *
+   ***************************************************************/
+  homeLink.click(() => {
+    $(".main").load("home.html");
+  });
+
+  searchBtn.on("click", (e) => {
+    e.preventDefault();
+    executeSearch(searchField.val());
+  });
+
+  searchField.on("keypress", (e) => {
+    if (e.which === 14) {
+      executeSearch(searchField.val());
+    }
+  });
+
+  topMoviesLink.click(async () => {
+    const trendingURI =
+      "https://api.themoviedb.org/3/trending/movie/week?api_key=b3ba8a8cfb333202db1a9d6497da1f47";
+
+    const trending = await fetch(trendingURI);
+    const data = await trending.json();
+    getMovies(data.results);
+  });
+
+  //   getTrendingMovies();
+  populateCategoriesMenu();
+});
+//movies?search=hellboy
