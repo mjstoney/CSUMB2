@@ -85,6 +85,9 @@ $(document).ready(() => {
   let categoryList = $("#categoryList");
   let currentMovies = [];
 
+  // load home page
+  $(".main").load("home.html");
+
   /***************************************************************
    *
    *        FUNCTIONS
