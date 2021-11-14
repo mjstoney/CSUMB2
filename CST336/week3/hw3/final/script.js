@@ -82,7 +82,6 @@ $(document).ready(() => {
   const topMoviesLink = $("#topMoviesLink");
   const homeLink = $("#homeLink");
   const searchForm = $("#searchForm");
-  let categoryList = $("#categoryList");
   let currentMovies = [];
 
   // load home page
@@ -105,7 +104,7 @@ $(document).ready(() => {
       arr.forEach((movie) => {
         let poster = posterAPI + movie.poster_path;
         $(".main").append(
-          `<div class="flip-card rounded-3 shadow-lg"><div class="flip-card-inner rounded"><div class="flip-card-front rounded"><img src="${poster}" class="rounded" alt="${movie.title}" /></div><div class="flip-card-back rounded overflow-auto"><h1>${movie.title}</h1><p>${movie.vote_average} / 10</p><p>${movie.overview}</p></div></div></div>`
+          `<div class="flip-card rounded-3 shadow-lg"}><div class="flip-card-inner rounded"><div class="flip-card-front rounded"><img src="${poster}" class="rounded" alt="${movie.title}" /></div><div class="flip-card-back rounded overflow-auto"><h1>${movie.title}</h1><p>${movie.vote_average} / 10</p><p>${movie.overview}</p></div></div></div>`
         );
       });
     }
@@ -162,12 +161,84 @@ $(document).ready(() => {
     return data.results;
   }
 
+  /***************************************
+   *
+   *  This function will display the top movies based on genre
+   * when the dropdown menu is clicked
+   *
+   **************************************/
   async function fetchGenreMovies(genreID) {
     let genreURI = `https://api.themoviedb.org/3/discover/movie?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreID}&with_watch_monetization_types=flatrate`;
     let response = await fetch(genreURI);
     let data = await response.json();
     console.log(data.results);
     getMovies(data.results);
+  }
+
+  /***************************************
+   *
+   *  This function will get the crew for a given movie
+   *
+   **************************************/
+  async function getCrew(movieID) {
+    let crewURI = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US`;
+    let crewResult = await fetch(crewURI);
+    let crewData = await crewResult.json();
+    return crewData;
+  }
+
+  /***************************************
+   *
+   * This function will get the details of a particular movie
+   *
+   **************************************/
+  async function getMovieDetails(movieID) {
+    let movieURI = `https://api.themoviedb.org/3/movie/${movieID}?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US`;
+    let movieResult = await fetch(movieURI);
+    let movieData = await movieResult.json();
+    return movieData;
+  }
+  /***************************************
+   *
+   *  This function will populate the moviepage.html
+   * and display it in the .main frame
+   *
+   **************************************/
+  async function displayMovie(movieID) {
+    $(".main").empty();
+    $(".main").load("moviepage.html");
+    let personnel = await getCrew(movieID);
+    let cast = personnel.cast;
+    let crew = personnel.crew;
+    let topBilled = [];
+    let director = crew.filter((person) => person.job === "Director")[0];
+
+    for (let i = 0; i < 4; i++) {
+      topBilled.push(cast[i]);
+      // console.log(`${cast[i].name} as ${cast[i].character}`);
+    }
+
+    let movie = await getMovieDetails(movieID);
+
+    let posterURI = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
+    let castList = $("#castList");
+    let dirList = $("#dirList");
+    $("#title").html(movie.title);
+    $("#tagline").html(movie.tagline);
+    $("#poster").attr("src", posterURI);
+    $("#rating").html(`${movie.vote_average} / 10`);
+    $("#year").html(movie.release_date.slice(0, 4));
+    $("#productionCompany").html(movie.production_companies[0].name);
+    $("#country").html(movie.production_companies[0].origin_country);
+    $("#overview").html(movie.overview);
+    topBilled.forEach((person) => {
+      castList.append(
+        `<li class="list-unstyled"><div class="fw-bold ms-5">${person.name}</div><div class="ms-5 ps-5 h5 text-muted">${person.character}</div></li>`
+      );
+    });
+    dirList.append(
+      `<li class="list-unstyled"><div class="fw-bold ms-5">${director.name}</div></li>`
+    );
   }
   /***************************************************************
    *

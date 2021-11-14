@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background-image: url("../background.jpg");
+  background-image: url("background.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,11 +16,16 @@ body {
   background-attachment: fixed;
 }
 
-.footer {
-  position: fixed;
+#home {
+  height: 90vh;
+  position: relative;
+}
+
+#footer {
+  position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
+
   text-align: center;
 }
 

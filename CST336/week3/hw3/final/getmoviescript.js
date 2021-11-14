@@ -15,9 +15,9 @@ $("document").ready(function () {
   }
 
   async function displayMovie(movieID) {
-    let personell = await getCrew(movieID);
-    let cast = personell.cast;
-    let crew = personell.crew;
+    let personnel = await getCrew(movieID);
+    let cast = personnel.cast;
+    let crew = personnel.crew;
     let topBilled = [];
     let director = crew.filter((person) => person.job === "Director")[0];
 
@@ -48,7 +48,6 @@ $("document").ready(function () {
       `<li class="list-unstyled"><div class="fw-bold ms-5">${director.name}</div></li>`
     );
   }
-  displayMovie(550);
 });
 
 /*
