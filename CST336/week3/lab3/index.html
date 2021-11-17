@@ -5,44 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up Page</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
-    <h1>Sign Up</h1>
-    <form id="signupForm" action="welcome.html">
-      First Name: <input type="text" name="fName" /><br />
-      Last Name: <input type="text" name="lName" /><br />
-      Gender: <input type="radio" name="gender" value="m" />Male
-      <input type="radio" name="gender" value="f" />Female<br /><br />
+    <div class="container">
+      <h1>Sign Up</h1>
+      <form id="signupForm" action="welcome.html">
+        First Name: <input type="text" name="fName" /><br />
+        Last Name: <input type="text" name="lName" /><br />
+        Gender: <input type="radio" name="gender" value="m" />Male
+        <input type="radio" name="gender" value="f" />Female<br /><br />
 
-      Zip Code: <input type="text" name="zip" id="zip" /><br />
-      City: <span id="city"></span> <br />
-      Latitude: <span id="latitude"></span><br />
-      Longitude: <span id="longitude"></span><br /><br />
+        Zip Code: <input type="text" name="zip" id="zip" /><span
+          id="zipErrorMessage"
+        ></span
+        ><br />
+        City: <span id="city"></span> <br />
+        Latitude: <span id="latitude"></span><br />
+        Longitude: <span id="longitude"></span><br /><br />
 
-      State:
-      <select name="state" id="state">
-        <option>Select One</option>
-        <option value="ca">California</option>
-        <option value="ny">New York</option>
-        <option value="tx">Texas</option></select
-      ><br />
+        State:
+        <select name="state" id="state">
+          <option>Select One</option>
+          <option value="ca">California</option>
+          <option value="ny">New York</option>
+          <option value="tx">Texas</option></select
+        ><br />
 
-      Select a County:
-      <select name="county" id="county"></select
-      ><br /><br />
-      Desired Username:
-      <input type="text" name="username" id="username" /><br />
-      <span id="usernameError"></span><br />
+        Select a County:
+        <select name="county" id="county"></select
+        ><br /><br />
+        Desired Username:
+        <input type="text" name="username" id="username" /><br />
+        <span id="usernameError"></span><br />
 
-      Password: <input type="password" name="password" id="password" />
-      <span id="passwordError"></span><br />
-      Password Again: <input type="password" id="passwordAgain" />
-      <span id="passwordAgainError"></span><br /><br />
+        Password: <input type="password" name="password" id="password" />
+        <span id="passwordError"></span><br />
+        Password Again: <input type="password" id="passwordAgain" />
+        <span id="passwordAgainError"></span><br /><br />
 
-      <input type="submit" value="Sign Up!" />
-    </form>
-
+        <input id="btn" type="submit" value="Sign Up!" />
+      </form>
+    </div>
     <script>
       var usernameAvailable = false;
 
@@ -52,10 +57,13 @@
         let url = `https://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php?zip=${zipCode}`;
         let response = await fetch(url);
         let data = await response.json();
-        //console.log(data);
-        $("#city").html(data.city);
-        $("#latitude").html(data.latitude);
-        $("#longitude").html(data.longitude);
+        if (!data) {
+          $("#zipErrorMessage").html("Invalid zip code.");
+        } else {
+          $("#city").html(data.city);
+          $("#latitude").html(data.latitude);
+          $("#longitude").html(data.longitude);
+        }
       });
 
       $("#state").on("change", async () => {

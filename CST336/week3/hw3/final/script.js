@@ -106,6 +106,11 @@ $(document).ready(() => {
         $(".main").append(
           `<div class="flip-card rounded-3 shadow-lg"}><div class="flip-card-inner rounded"><div class="flip-card-front rounded"><img src="${poster}" class="rounded" alt="${movie.title}" /></div><div class="flip-card-back rounded overflow-auto"><h1>${movie.title}</h1><p>${movie.vote_average} / 10</p><p>${movie.overview}</p></div></div></div>`
         );
+        $(".main div")
+          .last()
+          .on("click", function () {
+            displayMovie(movie.id);
+          });
       });
     }
   }
@@ -145,7 +150,6 @@ $(document).ready(() => {
       getMovies(currentMovies);
     }
     searchField.val("");
-    console.log(currentMovies);
   }
   /*
    *   This function fetches an array the top trending movies from the API
@@ -171,7 +175,6 @@ $(document).ready(() => {
     let genreURI = `https://api.themoviedb.org/3/discover/movie?api_key=b3ba8a8cfb333202db1a9d6497da1f47&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreID}&with_watch_monetization_types=flatrate`;
     let response = await fetch(genreURI);
     let data = await response.json();
-    console.log(data.results);
     getMovies(data.results);
   }
 
@@ -215,7 +218,6 @@ $(document).ready(() => {
 
     for (let i = 0; i < 4; i++) {
       topBilled.push(cast[i]);
-      // console.log(`${cast[i].name} as ${cast[i].character}`);
     }
 
     let movie = await getMovieDetails(movieID);
