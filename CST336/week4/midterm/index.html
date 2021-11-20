@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <table id="cartTable">
+        <tr>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+        <tr id="productInfo"></tr>
+        <tr id="discountRow"></tr>
+        <tr id="shippingRow">
+          <td>Shipping</td>
+          <td></td>
+          <td></td>
+          <td id="shippingAmt">$7.00</td>
+        </tr>
+        <tr id="subtotalRow">
+          <td>Subtotal</td>
+          <td></td>
+          <td></td>
+          <td id="subtotalAmt"></td>
+        </tr>
+        <tr id="taxRow">
+          <td>Tax (10%)</td>
+          <td></td>
+          <td></td>
+          <td id="taxAmt"></td>
+        </tr>
+        <tr id="totalRow">
+          <td>Total</td>
+          <td></td>
+          <td></td>
+          <td id="totalAmt"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="promoCode">
+      <span
+        ><strong>Promo Code: </strong
+        ><input type="text" name="promoCode" id="promoCodeInput" /><input
+          type="button"
+          id="promoCodeBtn"
+          value="Apply Promo Code" /></span
+      ><br />
+      <h4 id="promoErrorResponse"></h4>
+    </div>
+    <div id="shippingContainer">
+      <h2>Shipping & Handling</h2>
+      <select name="shipping" id="shipping"></select>
+    </div>
+  </body>
+</html>
