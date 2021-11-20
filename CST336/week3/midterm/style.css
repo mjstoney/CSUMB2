@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+i.fa {
+  font-size: 2em;
+}
+
+button.like,
+button.dislike {
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+button.cancelLike,
+button.cancelDislike {
+  background-color: lightgray;
+  border: none;
+  border-radius: 5px;
+  padding: 1em;
+}
+span {
+  margin: 1em 2em 1em 2em;
+}
+
+button.comments,
+button.question {
+  padding: 1em;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.question {
+  text-align: center;
+}
+
+.answerResult {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 700;
+}

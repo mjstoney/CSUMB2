@@ -222,6 +222,7 @@ $(document).ready(() => {
 
     let movie = await getMovieDetails(movieID);
 
+    console.log($("#title").html());
     let posterURI = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
     let castList = $("#castList");
     let dirList = $("#dirList");
@@ -241,6 +242,7 @@ $(document).ready(() => {
     dirList.append(
       `<li class="list-unstyled"><div class="fw-bold ms-5">${director.name}</div></li>`
     );
+    console.log($("#title").html());
   }
   /***************************************************************
    *

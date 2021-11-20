@@ -1,0 +1,59 @@
+body {
+  background-color: black;
+  text-align: center;
+  color: lightgray;
+  background-image: url("../img/bg.jpg");
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  height: 350px;
+  aspect-ratio: 1;
+}
+
+.planetInfo {
+  padding: 1em;
+  font-size: 1.5em;
+}
+
+a {
+  color: lightgray;
+  text-decoration: none;
+  font-size: 1.5em;
+  margin: 1em;
+  font-weight: 700;
+}
+
+a:hover {
+  text-decoration: none;
+  border-bottom: 2px solid lightgray;
+}
+
+.bgImg {
+  font-size: 1em;
+}
+
+footer {
+  font-size: 0.65em;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  height: 70px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+.disclaimer {
+  margin-top: 20px;
+}
