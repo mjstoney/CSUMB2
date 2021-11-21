@@ -62,5 +62,5 @@ app.get("/jupiter", async (req, res) => {
 });
 
 app.listen(3000, (req, res) => {
-  console.log("Server started");
+  console.log("Server started at http://localhost:3000");
 });
