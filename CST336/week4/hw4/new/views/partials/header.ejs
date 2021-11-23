@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Just a Few CS Topics</title>
+    <script>
+      let ele = document.querySelector('#home')
+      let activeClass = ele.classList
+      cosole.log(activeClass)
+    </script>
+  </head>
+  <body>
+    <i id="active" class=<%= active %>/>
+
+    <nav class="navbar">
+      <ul class="navList">
+        <li><a id="home" href="/">Home</a></li>
+        <li><a id="express" href="/express">ExpressJS </a></li>
+        <li><a id="mongoose" href="/mongoose">MongooseJS</a></li>
+        <li><a id="socketio" href="/socketio">SocketIO</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

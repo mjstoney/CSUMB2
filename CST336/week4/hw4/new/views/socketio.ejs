@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') %><header class="header">
+    <h1>SOCKET IO</h1>
+</header>
+<main class="main">
+    <div class="content">
+      <p class="blurb">Socket IO is a multi-language library that provides full-duplex, low-latency communication between servers and client programs. It makes it easy to keep persisten TCP connections for communication. Visit <a href="https://www.socket.io"">Socket.io!</a></p>
+      <ul>
+          <li class="listItem">
+              <h3>Performance</h3>
+              <p>SocketIO is a light wrapper for WebSocket, which means it makes using sockets easier with little added overhead.</p>
+          </li>
+          <li class="listItem">
+              <h3>Reliable</h3>
+              <p>If socket connection is not possible due to firewall or other reasons, SocketIO will fallback to HTTP long-polling to ensure the job is done.</p>
+          </li>
+          <li class="listItem">
+              <h3>Scalable</h3>
+              <p>SocketIO can be spread across multiple servers and handle as many connected clients as hardware will permit.</p>
+          </li>
+      </ul>
+  </div>
+  <div class="imgContainer">
+      <img src="./img/ethernet.jpg" alt="" srcset="">
+      Photo by <a href="https://unsplash.com/@jordanharrison?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jordan Harrison</a> on <a href="https://unsplash.com/s/photos/ethernet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+  </div>
+
+</main> <%- include('partials/footer.ejs') %>
