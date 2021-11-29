@@ -5,7 +5,8 @@ const pool = require("./dbPool");
 const app = express();
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
+// app.use(express.static("/public"));
 app.get("/", async (req, res) => {
   let sqlAuth = `SELECT authorId, firstName, lastName
   FROM q_authors
@@ -20,8 +21,10 @@ app.get("/", async (req, res) => {
 app.get("/searchByKeyword", async (req, res) => {
   let userKeyword = req.query.keyword;
   let params = [`%${userKeyword}%`];
-  let sql = `SELECT quote, authorid, firstName, lastName FROM q_quotes NATURAL JOIN q_authors WHERE quote LIKE '%${userKeyword}%'`;
+  let sql = `SELECT quote, authorId, firstName, lastName FROM q_quotes NATURAL JOIN q_authors WHERE quote LIKE '%${userKeyword}%'`;
   let rows = await executeSQL(sql, params);
+  console.log(rows);
+
   res.render("results", { quotes: rows });
 });
 
@@ -76,4 +79,4 @@ async function executeSQL(sql, params) {
   });
 }
 
-app.listen(3000, () => console.log("Server running on 3000"));
+app.listen(3000, () => console.log("Server running on http://localhost:3000/"));

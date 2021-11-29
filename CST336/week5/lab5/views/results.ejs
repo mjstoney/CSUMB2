@@ -4,8 +4,8 @@
   <h1>Quotes Found</h1>
 
   <% for (i of quotes) { %> <%= i.quote %> <br />
-  -<em>
-      <a href="#" id="<%= i.authorId %>"><%= i.firstName %> <%= i.lastName %></a> </em> <br /><br />
+  <div class="authorLink">-<em>
+      <a href="#" id="<%= i.authorId %>"><%= i.firstName %> <%= i.lastName %></a> </em> <br /><br /></div>
 
 
 
