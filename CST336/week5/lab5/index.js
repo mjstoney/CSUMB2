@@ -23,8 +23,6 @@ app.get("/searchByKeyword", async (req, res) => {
   let params = [`%${userKeyword}%`];
   let sql = `SELECT quote, authorId, firstName, lastName FROM q_quotes NATURAL JOIN q_authors WHERE quote LIKE '%${userKeyword}%'`;
   let rows = await executeSQL(sql, params);
-  console.log(rows);
-
   res.render("results", { quotes: rows });
 });
 
@@ -42,7 +40,6 @@ app.get("/searchByAuthor", async (req, res) => {
 app.get("/searchByCategory", async (req, res) => {
   let category = req.query.category;
   let params = [category];
-  console.log(category);
   sql = `select * from q_quotes as q join q_authors as a on q.authorId=a.authorId where q.category = ?;`;
   let rows = await executeSQL(sql, params);
 
